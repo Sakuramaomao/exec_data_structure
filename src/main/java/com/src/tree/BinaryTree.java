@@ -13,13 +13,17 @@ import java.util.Stack;
  * @Date 2019/2/27 21:23
  */
 public class BinaryTree {
-    private TreeNode root = null; // 定义一个空的根节点。
+    /**
+     * 定义一个空的根节点。
+     */
+    private TreeNode root = null;
 
     /**
      * BinaryTree初始就会有一个默认的根节点存在。
      */
     public BinaryTree() {
-        root = new TreeNode<String>(1, "A"); // 初始化根节点。
+        // 初始化根节点。
+        root = new TreeNode<String>(1, "A");
     }
 
     /**
@@ -126,13 +130,16 @@ public class BinaryTree {
         Stack<TreeNode> stack = new Stack<TreeNode>();
         stack.push(node);
         while (!stack.isEmpty()) {
-            TreeNode treeNode = stack.pop(); // 出栈和入栈
+            // 出栈和入栈
+            TreeNode treeNode = stack.pop();
             System.out.println("节点：" + treeNode.getData());
             if (treeNode.getrChild() != null) {
-                stack.push(treeNode.getrChild()); // 压入子节点
+                // 压入子节点
+                stack.push(treeNode.getrChild());
             }
             if (treeNode.getlChild() != null) {
-                stack.push(treeNode.getlChild()); // 压入子节点
+                // 压入子节点
+                stack.push(treeNode.getlChild());
             }
         }
     }
