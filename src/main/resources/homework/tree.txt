@@ -1,0 +1,11 @@
+作业：手写二叉树，完成以下功能：
+    用Java实现二叉树BinaryTree。
+    构建一个二叉树，包含以下几种方法：
+    1、构建二叉树；createBinaryTree
+    2、获取树的深度（或高度）；getHeight
+    3、获取树的大小（节点个数）；getSize
+    4、使用迭代方式对二叉树进行前中后序遍历；preTree, midTree, postTree
+    5、使用非迭代方式对二叉树进行前中后序遍历（使用栈的机制）；nonRecTree
+
+    ----扩展----
+    6、节点的销毁、增加、修改等。
