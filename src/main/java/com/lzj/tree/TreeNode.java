@@ -1,4 +1,4 @@
-package com.src.tree;
+package com.lzj.tree;
 
 /**
  * 定义二叉树的节点类

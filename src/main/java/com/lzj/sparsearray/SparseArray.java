@@ -1,4 +1,4 @@
-package com.src.sparsearray;
+package com.lzj.sparsearray;
 
 /**
  * 二维数据和稀疏数组之间的转换。

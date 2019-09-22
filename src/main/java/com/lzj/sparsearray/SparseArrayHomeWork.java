@@ -1,4 +1,4 @@
-package com.src.sparsearray;
+package com.lzj.sparsearray;
 
 /**
  * 作业：
