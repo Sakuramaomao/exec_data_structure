@@ -9,4 +9,28 @@ package com.src.sparsearray;
  * @Date 2019/9/17 8:08
  */
 public class SparseArrayHomeWork {
+    public static void main(String[] args) {
+        int[][] sparseArray = new int[3][3];
+        sparseArray[0][0] = 11;
+        sparseArray[0][1] = 11;
+        sparseArray[0][2] = 3;
+        sparseArray[1][0] = 1;
+        sparseArray[1][1] = 2;
+        sparseArray[1][2] = 1;
+        sparseArray[2][0] = 2;
+        sparseArray[2][1] = 3;
+        sparseArray[2][2] = 2;
+        SparseArray.printArray(sparseArray, "稀疏数组");
+
+        persisted(sparseArray);
+    }
+
+    /**
+     * 持久化稀疏数组。
+     *
+     * @param sparseArray 稀疏数组。
+     */
+    private static void persisted(int[][] sparseArray) {
+
+    }
 }

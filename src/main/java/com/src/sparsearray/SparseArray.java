@@ -58,7 +58,7 @@ public class SparseArray {
         return sum;
     }
 
-    private static void printArray(int[][] array, String message) {
+    static void printArray(int[][] array, String message) {
         System.out.println("=====" + message + "======");
         for (int[] row : array) {
             for(int data : row) {
