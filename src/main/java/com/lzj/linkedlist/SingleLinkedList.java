@@ -19,11 +19,11 @@ public class SingleLinkedList {
         while (true) {
             // 单向链表的尾部标识为next域为null。所以要遍历找到尾节点再添加。
             if (temp.next == null) {
-                temp.next = heroNode;
                 break;
             }
             temp = temp.next;
         }
+        temp.next = heroNode;
     }
 }
 
