@@ -13,7 +13,7 @@ public class SingleLinkedList {
     // 先初始化一个头节点，头节点不要动，也不存放具体数据。
     private HeroNode head = new HeroNode(0, null, null);
 
-    // 添加节点至链表尾部。
+    // 直接添加节点至链表尾部。
     public void add(HeroNode heroNode) {
         HeroNode temp = head;
         while (true) {
@@ -25,19 +25,47 @@ public class SingleLinkedList {
         }
         temp.next = heroNode;
     }
+
+    // 有顺序的插入
+    public void addOrdered(HeroNode heroNode) {
+        // 因为头节点不能动，所以仍然通过一个辅助指针（变量）来帮助找到添加的位置。
+        // 因为单链表，需要找的是添加位置的前一个节点，否则添加不了。
+        HeroNode temp = head;
+        boolean flag = false; // 标识链表中是否已经存在相同编号的节点。
+        while (true) {
+            if (temp.next == null) {
+                break;
+            }
+            if (temp.next.no > heroNode.no) {
+                break; // 使用temp的后一个节点进行比较，那么找到的temp就是待插入位置了，在temp的后面插入。
+            }
+            if (temp.next.no == heroNode.no) {
+                flag = true;
+                break;
+            }
+            temp = temp.next;
+        }
+
+        if (flag) {
+            System.out.printf("英雄已存在，编号为%d", temp.no);
+        } else {
+            heroNode.next = temp.next;
+            temp.next = heroNode;
+        }
+    }
 }
 
 /**
  * 水浒英雄的节点描述。
  */
 class HeroNode {
-    private int no;  // 数据域
-    private String heroName;
-    private String heroNickName;
+    int no;  // 数据域
+    String heroName;
+    String heroNickName;
 
-    public HeroNode next; // 指针域，用来指向下一个节点。
+    HeroNode next; // 指针域，用来指向下一个节点。
 
-    public HeroNode(int no, String heroName, String heroNickName) {
+    HeroNode(int no, String heroName, String heroNickName) {
         this.no = no;
         this.heroName = heroName;
         this.heroNickName = heroNickName;
