@@ -53,6 +53,52 @@ public class SingleLinkedList {
             temp.next = heroNode;
         }
     }
+
+    // 单链表的修改。no不能修改，要按照no来查找，只有name和和nickname才能修改。
+    public void update(HeroNode newHeroNode) {
+        if (head.next == null) {
+            System.out.println("链表为空");
+            return;
+        }
+
+        HeroNode temp = head;
+        boolean flag = false; //是否找到。
+        while (true) {
+            if (temp.next == null) {
+                System.out.println("没有找到");
+                return;
+            }
+
+            if (temp.no == newHeroNode.no) { // 根据no找到要修改的节点。
+                flag = true;
+                break;
+            }
+            temp = temp.next;
+        }
+
+        if (flag) {
+            temp.heroName = newHeroNode.heroName;
+            temp.heroNickName = newHeroNode.heroNickName;
+        } else {
+            System.out.println("没有找到");
+        }
+    }
+
+    public void list() {
+        if (head.next == null) {
+            System.out.println("链表为空");
+            return;
+        }
+
+        HeroNode temp = head.next;
+        while (true) {
+            System.out.println(temp.toString());
+            if (temp.next == null) {
+                break;
+            }
+            temp = temp.next;
+        }
+    }
 }
 
 /**
