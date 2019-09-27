@@ -84,6 +84,34 @@ public class SingleLinkedList {
         }
     }
 
+    // 1、头节点不能动，使用辅助变量来帮助完成。
+    // 2、必须要找到待删除节点的前一个节点才能删除，如果直接找到待删除节点，是无法删除这个节点的。
+    public void delete(int no) {
+        HeroNode temp = head;
+        boolean flag = false; // 是否找到该节点。
+        if (temp.next == null) {
+            System.out.println("链表为空");
+            return;
+        }
+        while (true) {
+            if (temp.next == null) {
+                break;
+            }
+            if (temp.next.no == no) {
+                flag = true;
+                break;
+            }
+            temp = temp.next;
+        }
+
+        if (flag) {
+            temp.next = temp.next.next;
+        } else {
+            System.out.printf("未找到id%d的节点", no);
+        }
+    }
+
+    // 遍历：通过一个辅助变量temp，帮助遍历整个链表。
     public void list() {
         if (head.next == null) {
             System.out.println("链表为空");
