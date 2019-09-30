@@ -31,11 +31,22 @@ public class SingleLinkedListTest {
         //HeroNode newHeroNode = new HeroNode(2, "小卢", "玉麒麟~~");
         //singleLinkedList.update(newHeroNode);
 
-        // 测试一把删除节点
-        singleLinkedList.delete(1);
-        singleLinkedList.delete(4);
-        singleLinkedList.delete(2);
-        singleLinkedList.delete(3);
+        // 测试一把删除节点。
+        //singleLinkedList.delete(1);
+        //singleLinkedList.delete(4);
+        //singleLinkedList.delete(2);
+        //singleLinkedList.delete(3);
+
+        // 测试一把获取有效节点个数。
+        //int length = singleLinkedList.length();
+        //System.out.println("有效节点的个数：" + length);
+        //singleLinkedList.delete(1);
+        //int length2 = singleLinkedList.length();
+        //System.out.println("有效节点的个数：" + length2);
+
+        // 测试一把查找倒数第index个节点。
+        HeroNode lastIndexNode = singleLinkedList.lastIndexOf(1);
+        System.out.println("倒数:" + lastIndexNode.toString());
 
         singleLinkedList.list();
     }

@@ -111,6 +111,52 @@ public class SingleLinkedList {
         }
     }
 
+    /**
+     * 获取链表中有效节点的个数。（带有头节点的将不统计头节点）
+     * <p>
+     * //* @param head 链表的头节点。
+     *
+     * @return 有效节点的个数。
+     */
+    public int length() {
+        if (head.next == null) {
+            return 0;
+        }
+        int length = 0;
+        HeroNode temp = head.next; // 这里体现了不统计头节点。
+        while (temp != null) {
+            length++;
+            temp = temp.next;
+        }
+        return length;
+    }
+
+    /**
+     * 获取单链表中倒数第index个节点。
+     * <p>
+     * 1、获取单链表长度length。
+     * 2、遍历(length - index)次找到节点位置。
+     *
+     * @param index 倒数的节点位置。
+     * @return 节点。
+     * @throws NullPointerException 如果 index 非法。
+     */
+    public HeroNode lastIndexOf(int index) {
+        if (head.next == null) {
+            return null; // 如果单链表为空，那么返回null。
+        }
+        int length = this.length();
+        if (index <= 0 || index > length) {
+            return null;
+        }
+
+        HeroNode temp = head.next;
+        for (int i = 0; i < length - index; i++) {
+            temp = temp.next;  // 遍历找到倒数第index个节点。
+        }
+        return temp;
+    }
+
     // 遍历：通过一个辅助变量temp，帮助遍历整个链表。
     public void list() {
         if (head.next == null) {
