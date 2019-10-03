@@ -1,5 +1,7 @@
 package com.lzj.linkedlist;
 
+import java.util.Stack;
+
 /**
  * 单向链表（带头节点）。
  * <p>
@@ -132,7 +134,7 @@ public class SingleLinkedList {
     }
 
     /**
-     * 获取单链表中倒数第index个节点。（百度面试题）
+     * 第一题：获取单链表中倒数第index个节点。（新浪面试题）
      * <p>
      * 1、获取单链表长度length。
      * 2、遍历(length - index)次找到节点位置。
@@ -158,7 +160,7 @@ public class SingleLinkedList {
     }
 
     /**
-     * 单链表反转。（腾讯面试题）
+     * 第二题：单链表反转。（腾讯面试题）
      * <p>
      * 思路：
      * 1、新建一个单链表，只有头节点。
@@ -182,6 +184,29 @@ public class SingleLinkedList {
             cur = next;
         }
         head.next = reversedHead.next; // 将反转后的链表重新赋值给head。
+    }
+
+    /**
+     * 第三题：逆序遍历整个链表。（百度面试题）
+     * <p>
+     * 思路：
+     * 可以利用栈的后入先出特性来逆序输出。
+     * （不能通过反转链表后再输出，这样会破坏原来的数据结构，不推荐。）
+     */
+    public void reverseList() {
+        if (head.next == null) {
+            return;
+        }
+        HeroNode cur = head.next;
+        Stack<HeroNode> stack = new Stack();
+        while (cur != null) {
+            stack.push(cur); // 入栈
+            cur = cur.next;
+        }
+        while (stack.size() > 0) {  // 出栈
+            HeroNode hero = stack.pop();
+            System.out.println(hero.toString());
+        }
     }
 
     // 遍历：通过一个辅助变量temp，帮助遍历整个链表。

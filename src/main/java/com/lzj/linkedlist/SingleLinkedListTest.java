@@ -44,16 +44,21 @@ public class SingleLinkedListTest {
         //int length2 = singleLinkedList.length();
         //System.out.println("有效节点的个数：" + length2);
 
-        // 测试一把查找倒数第index个节点。（百度面试题）
+        // 测试一把查找倒数第index个节点。（新浪面试题）
         //HeroNode lastIndexNode = singleLinkedList.lastIndexOf(1);
         //System.out.println("倒数:" + lastIndexNode.toString());
 
         // 测试一把单链表的反转。（腾讯面试题）
-        System.out.println("反转前：");
-        singleLinkedList.list();
-        singleLinkedList.reverse();
-        System.out.println("反转后：");
+        //System.out.println("反转前：");
+        //singleLinkedList.list();
+        //singleLinkedList.reverse();
+        //System.out.println("反转后：");
 
+        // 测试一把单链表的逆序输出。（百度面试题）
+        System.out.println("正序打印：");
         singleLinkedList.list();
+        System.out.println("逆序打印");
+        singleLinkedList.reverseList();
+
     }
 }
