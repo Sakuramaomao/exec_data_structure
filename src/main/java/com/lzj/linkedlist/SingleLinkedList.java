@@ -132,7 +132,7 @@ public class SingleLinkedList {
     }
 
     /**
-     * 获取单链表中倒数第index个节点。
+     * 获取单链表中倒数第index个节点。（百度面试题）
      * <p>
      * 1、获取单链表长度length。
      * 2、遍历(length - index)次找到节点位置。
@@ -155,6 +155,33 @@ public class SingleLinkedList {
             temp = temp.next;  // 遍历找到倒数第index个节点。
         }
         return temp;
+    }
+
+    /**
+     * 单链表反转。（腾讯面试题）
+     * <p>
+     * 思路：
+     * 1、新建一个单链表，只有头节点。
+     * 2、从旧链表中将节点一个个遍历并摘下，拼接到新链表的头部。
+     * <p>
+     * 其中难点在于如何永远在单链表的头部插入节点。
+     */
+    public void reverse() {
+        if (head.next == null || head.next.next == null) { // 如果单链表为空或者只有一个节点，则不需要反转。
+            return;
+        }
+        HeroNode reversedHead = new HeroNode(0, "", ""); // 新链表头节点。
+        HeroNode cur = head.next;
+        HeroNode next = null; // 需要用一个临时变量next来保存cur的下一个节点。
+        while (cur != null) {
+            next = cur.next;
+
+            cur.next = reversedHead.next; // 将cur插入到新链表的第一个节点位置。即永远在单链表的头部插入节点的小练习。
+            reversedHead.next = cur;
+
+            cur = next;
+        }
+        head.next = reversedHead.next; // 将反转后的链表重新赋值给head。
     }
 
     // 遍历：通过一个辅助变量temp，帮助遍历整个链表。

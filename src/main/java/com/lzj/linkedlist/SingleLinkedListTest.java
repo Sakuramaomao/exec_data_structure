@@ -16,16 +16,16 @@ public class SingleLinkedListTest {
         HeroNode heroNode4 = new HeroNode(4, "武松", "呵呵呵");
 
         // 测试一把无序添加节点。
-        //singleLinkedList.add(heroNode1);
-        //singleLinkedList.add(heroNode2);
-        //singleLinkedList.add(heroNode3);
-        //singleLinkedList.add(heroNode4);
+        singleLinkedList.add(heroNode1);
+        singleLinkedList.add(heroNode3);
+        singleLinkedList.add(heroNode2);
+        singleLinkedList.add(heroNode4);
 
         // 测试一把有序添加节点。
-        singleLinkedList.addOrdered(heroNode1);
-        singleLinkedList.addOrdered(heroNode4);
-        singleLinkedList.addOrdered(heroNode2);
-        singleLinkedList.addOrdered(heroNode3);
+        //singleLinkedList.addOrdered(heroNode1);
+        //singleLinkedList.addOrdered(heroNode4);
+        //singleLinkedList.addOrdered(heroNode2);
+        //singleLinkedList.addOrdered(heroNode3);
 
         // 测试一把修改节点。
         //HeroNode newHeroNode = new HeroNode(2, "小卢", "玉麒麟~~");
@@ -44,9 +44,15 @@ public class SingleLinkedListTest {
         //int length2 = singleLinkedList.length();
         //System.out.println("有效节点的个数：" + length2);
 
-        // 测试一把查找倒数第index个节点。
-        HeroNode lastIndexNode = singleLinkedList.lastIndexOf(1);
-        System.out.println("倒数:" + lastIndexNode.toString());
+        // 测试一把查找倒数第index个节点。（百度面试题）
+        //HeroNode lastIndexNode = singleLinkedList.lastIndexOf(1);
+        //System.out.println("倒数:" + lastIndexNode.toString());
+
+        // 测试一把单链表的反转。（腾讯面试题）
+        System.out.println("反转前：");
+        singleLinkedList.list();
+        singleLinkedList.reverse();
+        System.out.println("反转后：");
 
         singleLinkedList.list();
     }
