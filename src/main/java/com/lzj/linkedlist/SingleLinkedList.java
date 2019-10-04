@@ -225,6 +225,69 @@ public class SingleLinkedList {
             temp = temp.next;
         }
     }
+
+    public static void listWithHead(HeroNode head) {
+        if (head.next == null) {
+            System.out.println("链表为空");
+            return;
+        }
+
+        HeroNode temp = head.next;
+        while (true) {
+            System.out.println(temp.toString());
+            if (temp.next == null) {
+                break;
+            }
+            temp = temp.next;
+        }
+    }
+
+    /**
+     * 作业：合并两个有序的单链表，合并之后的链表依然有序。
+     * <p>
+     * 思路：
+     * 建立一个空链表，依次遍历摘取两个链表的每个节点，有序的放入新的链表中。
+     *
+     * @param h1 第一个有序单链表的头节点。
+     * @param h2 第二个有序单链表的头节点。
+     * @return 合并后的单链表，合并后依然有序。
+     */
+    public static HeroNode combineOrdered(HeroNode h1, HeroNode h2) {
+        HeroNode temp1 = h1.next;
+        HeroNode temp2 = h2.next;
+        if (temp1 == null) return h2;
+        if (temp2 == null) return h1;
+
+        HeroNode comOrderHead = new HeroNode(0, "", "");
+        HeroNode tail = comOrderHead;
+        while (true) {
+            if (temp1 == null && temp2 == null) { // 当两个链表都遍历到最后时才会退出。
+                break;
+            }
+            if (temp1 == null) { // 当其中一个链表结束时，直接将另一个全部添加到新链表中。
+                tail.next = temp2;
+                break;
+            }
+            if (temp2 == null) {
+                tail.next = temp1;
+                break;
+            }
+
+            if (temp1.no < temp2.no) {
+                tail.next = temp1;
+                temp1 = temp1.next;
+            } else {
+                tail.next = temp2;
+                temp2 = temp2.next;
+            }
+            tail = tail.next;
+        }
+        return comOrderHead;
+    }
+
+    public HeroNode getHead() {
+        return head;
+    }
 }
 
 /**
