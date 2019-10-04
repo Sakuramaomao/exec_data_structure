@@ -39,7 +39,7 @@ public class SingleLinkedList {
                 break;
             }
             if (temp.next.no > heroNode.no) {
-                break; // 使用temp的后一个节点进行比较，那么找到的temp就是待插入位置了，在temp的后面插入。
+                break; // 使用temp的后一个节点进行比较，那么找到的temp后面就是待插入位置了。
             }
             if (temp.next.no == heroNode.no) {
                 flag = true;
