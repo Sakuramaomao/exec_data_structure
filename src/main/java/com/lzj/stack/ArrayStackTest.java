@@ -41,11 +41,6 @@ public class ArrayStackTest {
                     scanner.close();
                     System.out.println("程序已退出");
                     break;
-                //default:
-                //    loop = false;
-                //    scanner.close();
-                //    System.out.println("输入有误，程序退出");
-                //    break;
             }
         }
     }
