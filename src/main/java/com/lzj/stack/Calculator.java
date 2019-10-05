@@ -4,9 +4,9 @@ package com.lzj.stack;
  * 栈实践，计算器。
  * <p>
  * 使用数组模拟的栈实现单位数的计算器。
- * <p>
+ *
  * 注意：
- * 此版本只能计算单位数，不能计算多位数。
+ *  只能使用加减乘除四则运算。
  *
  * @Author Sakura
  * @Date 2019/10/5 17:00
@@ -22,7 +22,7 @@ public class Calculator {
         int oper;
         int index = 0;
         char ch; // 临时变量，存放表达式中当前的值。
-        String keepNum = "";
+        String keepNum = ""; // 当出现多位数字时使用的数字累加器。
 
         // 1、遍历表达式中的字符。
         while (true) {
