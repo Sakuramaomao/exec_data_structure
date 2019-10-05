@@ -48,6 +48,15 @@ public class ArrayStack {
         return value;
     }
 
+    /**
+     * 查看栈顶元素（偷瞄一下栈顶，并非出栈）。
+     *
+     * @return 栈顶元素。
+     */
+    public int peek() {
+        return stack[top];
+    }
+
     public void list() {
         if (isEmpty()) {
             System.out.println("栈空，没有元素");
