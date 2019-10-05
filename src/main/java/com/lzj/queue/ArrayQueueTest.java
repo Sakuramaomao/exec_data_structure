@@ -48,6 +48,7 @@ public class ArrayQueueTest {
                     break;
                 case "e":
                     loop = false;
+                    scanner.close();
                     System.out.println("GoodBye User");
                     break;
             }
