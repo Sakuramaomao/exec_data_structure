@@ -48,13 +48,34 @@ public class MiGong {
      * 2：表示小球可以走。
      * 3；表示改点可以走，但是走不通。
      *
+     * 思路：
+     * 1、到终点
+     *      return true（结束递归）
+     * 2、未到终点
+     *      （1）可走（为0）
+     *          走入这个点（设置为2）
+     *          开始判断这个点的四周是否可走
+     *          1、下面可走
+     *              return true
+     *          2、右面可走
+     *              return true
+     *          3、上面可走
+     *              return true
+     *          4、左面可走
+     *              return true
+     *          5、以上都不能走
+     *              这是一个死点（设置为3）
+     *              return false
+     *      （2）不可走（不为0）
+     *          return false
+     *
      * @param map 地图
      * @param i   小球起始位置横坐标。
      * @param j   小球起始位置纵坐标。
      * @return boolean
      */
     private static boolean stepBy(int[][] map, int i, int j) {
-        if (map[i][j] == 2) { // 已找到终点。
+        if (map[5][4] == 2) { // 已找到终点。
             return true;
         } else {
             if (map[i][j] == 0) { // 如果当前这个节点还没走过。
