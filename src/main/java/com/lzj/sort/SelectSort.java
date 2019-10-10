@@ -1,18 +1,32 @@
 package com.lzj.sort;
 
-import java.util.Arrays;
-
 /**
  * 选择排序。
+ * <p>
+ * 时间复杂度是O(n^2)，80000随机数排序，耗时2.26秒。所以选择排序比较冒泡排序快。
+ * <p>
+ * 选择排序的优化：只有当min被还要小的元素替换过位置，才会做元素位置交换的操作，否则，不用交换。
  *
  * @Author Sakura
  * @Date 2019/10/10 21:27
  */
 public class SelectSort {
     public static void main(String[] args) {
-        int[] arr = {119, -2, -1, 110};
-        System.out.println("排序前：" + Arrays.toString(arr));
+        //int[] arr = {119, -2, -1, 110};
+        //System.out.println("排序前：" + Arrays.toString(arr));
+        // 下面是80000随机数的性能测试。
+        int[] arr = new int[80000];
+        for (int i = 0; i < 80000; i++) {
+            arr[i] = (int) (Math.random() * 8000000);
+        }
+        long startTime = System.currentTimeMillis();
+        selectSort(arr);
+        long time = System.currentTimeMillis() - startTime;
+        System.out.println("8w随机数，选择排序耗时：" + time / 1000.0 + " 秒");
+        //System.out.println("排序后：" + Arrays.toString(arr));
+    }
 
+    private static void selectSort(int[] arr) {
         for (int i = 0; i < arr.length - 2; i++) { // 最后一个元素不需要排序，所以多减了一个1。
             int min = arr[i]; // 存放最小值, 假定第i个元素是最小的。
             int minIndex = i; // 存放最小值的索引，用于交换。
@@ -22,11 +36,11 @@ public class SelectSort {
                     minIndex = j;
                 }
             }
-            arr[minIndex] = arr[i]; // 交换最小值和第i个元素的位置。
-            arr[i] = min;
+            if (minIndex != i) { // 只有当min被还要小的元素替换过位置，才会做下面的交换，否则，不用变动位置。
+                arr[minIndex] = arr[i]; // 交换最小值和第i个元素的位置。
+                arr[i] = min;
+            }
         }
-
-        System.out.println("排序后：" + Arrays.toString(arr));
 
         // 以下为由简到繁的推导过程，如果忘记了可以看下面的注释。
         //// 第一趟排序。

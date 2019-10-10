@@ -6,7 +6,7 @@ package com.lzj.sort;
  * 冒泡排序需要arr.length - 1趟排序，之所以减一，是因为每趟排序都会将最大值放置到最后，
  * 而最后一个元素不需要排序了，少一趟。
  * <p>
- * 时间复杂度是O(n^2). 80000随机数排序，耗时11秒。
+ * 时间复杂度是O(n^2). 80000随机数排序，耗时11.99秒。
  * <p>
  * 冒泡排序的优化：如果某一趟排序过程中并没有发生交换，那么表示数组已然有序，直接停止排序。
  *
@@ -16,6 +16,7 @@ package com.lzj.sort;
 public class BubbleSort {
     public static void main(String[] args) {
         //int[] arr = {3, 10, -1, 9, 20};
+        // 下面是80000随机数的性能测试。
         int[] arr = new int[80000];
         for (int i = 0; i < 80000; i++) {
             arr[i] = (int) (Math.random() * 8000000);
@@ -25,7 +26,7 @@ public class BubbleSort {
         bubbleSort(arr);
         //System.out.println("排序后顺序：" + Arrays.toString(arr));
         long time = System.currentTimeMillis() - startTime;
-        System.out.println("耗时：" + time / 1000 + " s");
+        System.out.println("8w随机数，冒泡排序耗时：" + time / 1000.0 + " 秒");
     }
 
     private static void bubbleSort(int[] arr) {
