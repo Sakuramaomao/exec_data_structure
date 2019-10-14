@@ -1,12 +1,10 @@
 package com.lzj.sort;
 
-import java.util.Arrays;
-
 /**
  * 希尔排序。
  * <p>
  * 希尔排序是插入排序的增强版。
- * 
+ * <p>
  * 插入排序有两种方式，交换式和位移式。交换式相较于位移式，耗费时间较多。
  * 同理，希尔排序也有两种方式。此处属于交换式希尔排序。
  *
@@ -27,10 +25,11 @@ public class ShellSort {
     }
 
     private static void shellSort(int[] arr) {
-        int temp = 0;
-        for (int gap = arr.length / 2; gap > 0 ; gap /= 2) {
+        int temp;
+        // 这个可以一步一步的写。
+        for (int gap = arr.length / 2; gap > 0; gap /= 2) {
             for (int i = gap; i < arr.length; i++) {
-                for (int j = i - gap; j >= 0 ; j -= gap) {
+                for (int j = i - gap; j >= 0; j -= gap) {
                     if (arr[j] > arr[j + gap]) {
                         temp = arr[j];
                         arr[j] = arr[j + gap];
@@ -39,5 +38,38 @@ public class ShellSort {
                 }
             }
         }
+
+        // 第一趟，当步长为5时，有五组。
+        //for (int i = 5; i < arr.length; i++) {
+        //    for (int j = i - 5; j >= 0; j -= 5) {
+        //        if (arr[j] > arr[j + 5]) {
+        //            temp = arr[j];
+        //            arr[j] = arr[j + 5];
+        //            arr[j + 5] = temp;
+        //        }
+        //    }
+        //}
+
+        // 第二趟，当步长为2时，有两组。
+        //for (int i = 2; i < arr.length; i++) {
+        //    for (int j = i - 2; j >= 0; j -= 2) {
+        //        if (arr[j] > arr[j + 2]) {
+        //            temp = arr[j];
+        //            arr[j] = arr[j + 2];
+        //            arr[j + 2] = temp;
+        //        }
+        //    }
+        //}
+
+        // 第三趟，当步长为1时，只有一组，就是交换式的插入排序了。
+        //for (int i = 1; i < arr.length; i++) {
+        //    for (int j = i - 1; j >= 0; j -= 1) {
+        //        if (arr[j] > arr[j + 1]) {
+        //            temp = arr[j];
+        //            arr[j] = arr[j + 1];
+        //            arr[j + 1] = temp;
+        //        }
+        //    }
+        //}
     }
 }
