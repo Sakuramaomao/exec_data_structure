@@ -5,8 +5,7 @@ package com.lzj.sort;
  * <p>
  * 希尔排序是插入排序的增强版。
  * <p>
- * 时间复杂度O(nlogn)，80000随机数排序，耗时6.75秒。所以交换式希尔排序比较慢，
- * 要比选择和插入排序慢，但是比冒泡排序快。
+ * 时间复杂度O(nlogn)。
  * <p>
  * 插入排序有两种方式，交换式和位移式。交换式相较于位移式，耗费时间较多。
  * 同理，希尔排序也有两种方式。此处属于交换式希尔排序。
@@ -16,17 +15,24 @@ package com.lzj.sort;
  */
 public class ShellSort {
     public static void main(String[] args) {
-//        int[] arr = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
+        //int[] arr = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
         int[] arr = new int[80000];
         for (int i = 0; i < 80000; i++) {
             arr[i] = (int) (Math.random() * 8000000);
         }
         long start = System.currentTimeMillis();
-        shellSort(arr);
+        //shellSort(arr);
+        shellSort2(arr);
         long end = System.currentTimeMillis();
         System.out.printf("消耗时间：%f ", (end - start) / 1000.0);
     }
 
+    /**
+     * 80000随机数排序，耗时6.75秒。所以交换式希尔排序比较慢，
+     * 要比选择和插入排序慢，但是比冒泡排序快。之所以慢，就是因为交换次数过多。
+     *
+     * @param arr 待排序的数组。
+     */
     private static void shellSort(int[] arr) {
         int temp;
         // 这个可以一步一步的写。
@@ -74,5 +80,28 @@ public class ShellSort {
         //        }
         //    }
         //}
+    }
+
+    /**
+     * 80000随机数排序，耗时0.016秒。所以位移式希尔排序是真滴快，
+     * 比冒泡、选择、插入排序都要快。
+     *
+     * @param arr 待排序的数组。
+     */
+    private static void shellSort2(int[] arr) {
+        for (int gap = arr.length / 2; gap > 0; gap /= 2) {
+            // 从第gap个元素开始，逐个对其所在的组进行位移式插入排序。
+            for (int i = gap; i < arr.length; i++) {
+                int j = i;
+                int insertValue = arr[i];
+                if (arr[j] < arr[j - gap]) {
+                    while (j - gap >= 0 && insertValue < arr[j - gap]) {
+                        arr[j] = arr[j - gap];
+                        j -= gap;
+                    }
+                    arr[j] = insertValue;
+                }
+            }
+        }
     }
 }
