@@ -1,13 +1,13 @@
 package com.lzj.sort;
 
-import java.util.Arrays;
-
 /**
  * 基数排序（桶排序）
  * <p>
  * 基数排序执行多少趟，取决于数组中元素最大值的位数，如果最大值是748，那么要执行3趟排序。
  * <p>
  * 基数排序是典型的用空间换取时间的排序算法。
+ * 当排序数达到8千万时，所需的heap内存为至少3.27GB，运行会内存溢出。
+ * 当排序数只是8万时，算法仅消耗0.067s，还是非常的快的。
  *
  * @Author Sakura
  * @Date 2019/10/18 8:08
@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class RadixSort {
     public static void main(String[] args) {
 //        int[] arr = {53, 3, 542, 748, 14, 214};
-        int[] arr = new int[80000000];
+        int[] arr = new int[800000];
         // 80000000 * 11 * 4 / 1024 / 1024 / 1024 = 3.27GB
         for (int i = 0; i < arr.length; i++) {
             arr[i] = (int) (Math.random() * 8000000);
