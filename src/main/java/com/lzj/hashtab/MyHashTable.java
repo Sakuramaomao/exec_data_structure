@@ -20,6 +20,7 @@ public class MyHashTable {
         while (true) {
             System.out.println("add 添加");
             System.out.println("list 查看");
+            System.out.println("delete 删除");
             System.out.println("exit 退出");
             key = scanner.next();
             switch (key) {
@@ -34,9 +35,21 @@ public class MyHashTable {
                 case "list":
                     hashTab.list();
                     break;
+                case "find":
+                    System.out.println("输入要查找的id");
+                    int queryId = scanner.nextInt();
+                    hashTab.findEmpById(queryId);
+                    break;
+                case "delete":
+                    System.out.println("输入要删除的emp id");
+                    int delId = scanner.nextInt();
+                    hashTab.deleteById(delId);
+                    break;
                 case "exit":
                     scanner.close();
                     System.out.println("goodbye");
+                    break;
+                default:
                     break;
             }
         }
@@ -81,11 +94,23 @@ class HashTab {
         }
     }
 
-    // TODO findEmpById
+    // 根据 id 找到对应的 emp。
+    public void findEmpById(int id) {
+        int index = hashFun(id);
+        Emp emp = arr[index].findEmpById(id);
+        if (emp == null) {
+            System.out.println("未找到");
+        } else {
+            System.out.printf("在第 %d 条链表找到id为 %d 的 emp\n", index + 1, id);
+        }
+    }
 
-    // TODO updateEmpById
-
-    // TODO deleteEmpById
+    // 根据id删除对应的emp
+    public void deleteById(int id) {
+        int index = hashFun(id);
+        EmpLinkedList empLinkedList = arr[index];
+        empLinkedList.deleteById(id);
+    }
 }
 
 /**
@@ -95,7 +120,7 @@ class HashTab {
  * 这里的head写法是按照没有存放数据的头节点来写的。
  */
 class EmpLinkedList {
-    private Emp head;
+    Emp head;
 
     // 添加emp到链表
     public void add(Emp emp) {
@@ -133,6 +158,66 @@ class EmpLinkedList {
             temp = temp.next;
         }
         System.out.println();
+    }
+
+    /**
+     * 根据 id 查找 Emp。
+     *
+     * @param id Emp的id
+     * @return Emp
+     */
+    public Emp findEmpById(int id) {
+        Emp temp = head;
+        if (temp == null) {
+            return null;
+        }
+        while (true) {
+            if (temp.id == id) { // 根据id找到emp。
+                break;
+            }
+            if (temp.next == null) { // 未找到emp。
+                break;
+            }
+            temp = temp.next;
+        }
+        return temp;
+    }
+
+    /**
+     * 根据 id 删除 emp。
+     * <p>
+     * 练习单链表的删除。
+     *
+     * @param id emp的id。
+     */
+    public void deleteById(int id) {
+        // 构造一个头节点，next指向原来的链表。
+        Emp emp = new Emp(-1, "");
+        emp.next = head;
+        Emp temp = emp;
+        if (temp.next == null) {
+            System.out.println("链表为空");
+            return;
+        }
+        boolean flag = false; // 标识是否找到待删除的节点
+        while (true) {
+            if (temp.next == null) {
+                break;
+            }
+            if (temp.next.id == id) {
+                flag = true;
+                break;
+            }
+            temp = temp.next;
+        }
+        if (flag) {
+            temp.next = temp.next.next;
+        } else {
+            System.out.printf("未找到id为 %d 的节点", id);
+        }
+        // 这句话很重要。意味着将修改后的链表放回去。
+        // 如果没有，那么对链表的改动将不会生效。
+        head = emp.next;
     }
 }
 
