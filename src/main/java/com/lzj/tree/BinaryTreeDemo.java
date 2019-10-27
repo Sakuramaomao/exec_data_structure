@@ -25,14 +25,14 @@ public class BinaryTreeDemo {
         binaryTree.setRoot(root);
 
         // 测试一把二叉树遍历。
-        //System.out.println("前序遍历");
-        //binaryTree.preOrder();
-        //
-        //System.out.println("中序遍历");
-        //binaryTree.midOrder();
-        //
-        //System.out.println("后序遍历");
-        //binaryTree.postOrder();
+        System.out.println("前序遍历");
+        binaryTree.preOrder();
+
+        System.out.println("中序遍历");
+        binaryTree.midOrder();
+
+        System.out.println("后序遍历");
+        binaryTree.postOrder();
 
         System.out.println("===============");
         // 测试一把查找
