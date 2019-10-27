@@ -10,7 +10,7 @@ package com.lzj.tree;
  */
 public class BinaryTreeDemo {
     public static void main(String[] args) {
-        // 测试一把二叉树。
+        // 构建二叉树
         HeroNode root = new HeroNode(1, "宋江");
         HeroNode node1 = new HeroNode(2, "吴用");
         HeroNode node2 = new HeroNode(3, "卢俊义");
@@ -24,14 +24,43 @@ public class BinaryTreeDemo {
         BinaryTree binaryTree = new BinaryTree();
         binaryTree.setRoot(root);
 
-        System.out.println("前序遍历");
-        binaryTree.preOrder();
+        // 测试一把二叉树遍历。
+        //System.out.println("前序遍历");
+        //binaryTree.preOrder();
+        //
+        //System.out.println("中序遍历");
+        //binaryTree.midOrder();
+        //
+        //System.out.println("后序遍历");
+        //binaryTree.postOrder();
 
-        System.out.println("中序遍历");
-        binaryTree.midOrder();
+        System.out.println("===============");
+        // 测试一把查找
+        System.out.println("前序查找");
+        HeroNode resNode = binaryTree.preOrderSearch(5);
+        if (resNode != null) {
+            System.out.printf("找到id为 %d 的英雄，名称为 %s \n", resNode.id, resNode.name);
+        } else {
+            System.out.println("没有找到");
+        }
 
-        System.out.println("后序遍历");
-        binaryTree.postOrder();
+        System.out.println("中序查找");
+        HeroNode resNode2 = binaryTree.midOrderSearch(5);
+        if (resNode != null) {
+            System.out.printf("找到id为 %d 的英雄，名称为 %s \n", resNode2.id, resNode2.name);
+        } else {
+            System.out.println("没有找到");
+        }
+
+        System.out.println("后序查找");
+        HeroNode resNode3 = binaryTree.postOrderSearch(5);
+        if (resNode != null) {
+            System.out.printf("找到id为 %d 的英雄，名称为 %s \n", resNode3.id, resNode3.name);
+        } else {
+            System.out.println("没有找到");
+        }
+
+
     }
 }
 
@@ -66,6 +95,32 @@ class BinaryTree {
         root.postOrder();
     }
 
+    // 前 查找
+    public HeroNode preOrderSearch(int no) {
+        if (root != null) {
+            return root.preOrderSearch(no);
+        } else {
+            return null;
+        }
+    }
+
+    // 中 查找
+    public HeroNode midOrderSearch(int no) {
+        if (root != null) {
+            return root.midOrderSearch(no);
+        } else {
+            return null;
+        }
+    }
+
+    // 后 查找
+    public HeroNode postOrderSearch(int no) {
+        if (root != null) {
+            return root.postOrderSearch(no);
+        } else {
+            return null;
+        }
+    }
 }
 
 // 节点类
@@ -122,4 +177,85 @@ class HeroNode {
         System.out.println(this); // 第三输出父节点。
     }
 
+    /**
+     * 前序遍历查找
+     *
+     * @param no 查找no。
+     * @return 如果找到，返回HeroNode。
+     */
+    public HeroNode preOrderSearch(int no) {
+        System.out.println("查找一次");
+        if (this.id == no) { // 如果这个父节点满足，返回；否则，向左节点寻找。
+            return this;
+        }
+
+        HeroNode heroNode = null;
+        if (this.left != null) { // 如果左节点存在，则递归。（递归时，会将其看做另一个父节点的。）
+            heroNode = this.left.preOrderSearch(no);
+        }
+        if (heroNode != null) { // 如果从左边找到，则返回；否则，向右节点寻找。
+            return heroNode;
+        }
+
+        if (this.right != null) { // 如果右节点存在，则递归。（同样，递归时，会将其看做另一个父节点的。）
+            heroNode = this.right.preOrderSearch(no);
+        }
+        return heroNode; // 无论找到还是未找到，都直接返回了。
+    }
+
+    /**
+     * 中序遍历查找。
+     *
+     * @param no 查找no。
+     * @return 如果找到，返回HeroNode。
+     */
+    public HeroNode midOrderSearch(int no) {
+        HeroNode heroNode = null;
+        if (this.left != null) { // 如果左节点存在，则递归。（从最左边的叶子节点开始判断。）
+            heroNode = this.left.midOrderSearch(no);
+        }
+        if (heroNode != null) { // 如果左边找到，则返回。否则，向父节点找。
+            return heroNode;
+        }
+
+        System.out.println("查找一次");
+        if (this.id == no) { // 如果这个父节点满足，则返回，否则，向右边找。（最左边或者最右边的叶子节点本身可以看做是父节点）
+            return this;
+        }
+
+        if (this.right != null) { // 如果右节点存在，则递归。（从最右边的叶子节点开始判断。）
+            heroNode = this.right.midOrderSearch(no);
+        }
+        return heroNode; // 无论找到还是未找到，都要返回了。
+    }
+
+    /**
+     * 后序遍历查找。
+     *
+     * @param no 查找no。
+     * @return 如果找到，返回HeroNode。
+     */
+    public HeroNode postOrderSearch(int no) {
+        HeroNode heroNode = null;
+        if (this.left != null) { // 如果左节点存在，则递归。（从最左边的叶子节点开始判断。）
+            heroNode = this.left.postOrderSearch(no);
+        }
+        if (heroNode != null) { // 如果左边找到，返回，否则，向右边找。
+            return heroNode;
+        }
+
+        if (this.right != null) { // 如果右节点存在，则递归。
+            heroNode = this.right.postOrderSearch(no);
+        }
+        if (heroNode != null) { // 如果右边找到，则返回，否则，向父节点找。
+            return heroNode;
+        }
+
+        System.out.println("查找一次");
+        if (this.id == no) { // 如果父节点找到，则返回，否则，返回null。
+            return this;
+        } else {
+            return null;
+        }
+    }
 }
