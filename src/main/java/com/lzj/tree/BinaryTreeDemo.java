@@ -71,6 +71,19 @@ class BinaryTree {
         this.root = root;
     }
 
+    // 删除节点
+    public void delNode(int no) {
+        if (root != null) {
+            if (root.id == no) { // 这里要先对root本身进行判断。
+                root = null;
+            } else {
+                root.delNode(no);
+            }
+        } else {
+            System.out.println("空树");
+        }
+    }
+
     // 前
     public void preOrder() {
         if (root == null) {
@@ -141,6 +154,28 @@ class HeroNode {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    // 删除指定节点，如果是叶子节点，直接删除；如果是父节点，删除子树。
+    // 类似单链表的删除，必须知道上一个节点才能删除当前节点。
+    public void delNode(int no) {
+        if (this.left != null && this.left.id == no) { // 对比当前节点的左节点。
+            this.left = null;
+            return;
+        }
+
+        if (this.right != null && this.right.id == no) { // 对比当前节点的右节点。
+            this.right = null;
+            return;
+        }
+
+        // 如果都不是，则要开始递归。
+        if (this.left != null) {
+            this.left.delNode(no); // 先向左边递归
+        }
+        if (this.right != null) {
+            this.right.delNode(no); // 再向右边递归
+        }
     }
 
     // 主要是看父节点的输出顺序，父节点先输出，前。父节点第二输出，中。父节点第三输出，后。
