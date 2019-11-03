@@ -9,6 +9,10 @@ package com.lzj.sort;
  * <p>
  * 插入排序有两种方式，交换式和位移式。交换式相较于位移式，耗费时间较多。
  * 同理，希尔排序也有两种方式。此处属于交换式希尔排序。
+ * <p>
+ * 80w排序只要0.26秒。
+ * 800w排序只要2.50秒。
+ * 8000w排序只要31.91秒。
  *
  * @Author Sakura
  * @Date 2019/10/12 7:43
@@ -16,8 +20,8 @@ package com.lzj.sort;
 public class ShellSort {
     public static void main(String[] args) {
         //int[] arr = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
-        int[] arr = new int[800000];
-        for (int i = 0; i < 800000; i++) {
+        int[] arr = new int[80000000];
+        for (int i = 0; i < 80000000; i++) {
             arr[i] = (int) (Math.random() * 8000000);
         }
         long start = System.currentTimeMillis();

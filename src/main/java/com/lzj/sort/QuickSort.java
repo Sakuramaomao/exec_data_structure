@@ -4,6 +4,10 @@ package com.lzj.sort;
  * 快速排序。
  * <p>
  * 当数据量达到8千w时，希尔排序要42s，而快速排序只需要12s。
+ * <p>
+ * 80w排序只要0.188秒。
+ * 800w排序只要1.50秒
+ * 8000w排序只要13.27秒。
  *
  * @Author Sakura
  * @Date 2019/10/15 21:27
@@ -11,8 +15,8 @@ package com.lzj.sort;
 public class QuickSort {
     public static void main(String[] args) {
         //int[] arr = {-9, 78, 24, 23, -567, 70};
-        int[] arr = new int[800000];
-        for (int i = 0; i < 800000; i++) {
+        int[] arr = new int[80000000];
+        for (int i = 0; i < 80000000; i++) {
             arr[i] = (int) (Math.random() * 8000000);
         }
         long start = System.currentTimeMillis();
