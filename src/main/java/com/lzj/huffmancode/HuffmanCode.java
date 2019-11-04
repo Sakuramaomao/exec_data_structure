@@ -15,12 +15,28 @@ public class HuffmanCode {
     public static void main(String[] args) {
         String str = "i like like like java do you like a java";
         // 1、根据赫夫曼编码压缩数据的原理，需要先创建str的赫夫曼树。
-
+        byte[] bytes = str.getBytes();
+        Node huffmanTreeRoot = createHuffmanTree(getNodes(bytes));
+        huffmanTreeRoot.preOrder();
     }
 
     // 创建huffman树。
-    public static void createHuffmanTree(List<Node> nodes) {
-
+    public static Node createHuffmanTree(List<Node> nodes) {
+        while (nodes.size() > 1) {
+            // 1、对所有nodes对象排序。
+            Collections.sort(nodes);
+            // 2、取出第一个和第二个。构建二叉树。
+            Node leftNode = nodes.get(0);
+            Node rightNode = nodes.get(1);
+            Node parentNode = new Node((byte) 1, leftNode.weight + rightNode.weight);
+            parentNode.left = leftNode;
+            parentNode.right = rightNode;
+            // 3、删除第一个和第二个，添加新的。
+            nodes.remove(leftNode);
+            nodes.remove(rightNode);
+            nodes.add(parentNode);
+        }
+        return nodes.get(0);
     }
 
     /**
@@ -49,6 +65,10 @@ public class HuffmanCode {
 
         return nodes;
     }
+
+    public static void preOrder(Node root) {
+        root.preOrder();
+    }
 }
 
 // 描述huffman树中节点的node类。
@@ -58,7 +78,7 @@ class Node implements Comparable<Node> {
     Node left; // 左子节点。
     Node right; // 右子节点。
 
-    public Node(byte ch, int weight) {
+    public Node(byte ch, Integer weight) {
         this.ch = ch;
         this.weight = weight;
     }
