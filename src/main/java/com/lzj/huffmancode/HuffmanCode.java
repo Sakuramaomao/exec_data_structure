@@ -11,14 +11,111 @@ import java.util.*;
 public class HuffmanCode {
     public static void main(String[] args) {
         String str = "i like like like java do you like a java";
-        // 1、根据赫夫曼编码压缩数据的原理，需要先创建str的赫夫曼树。
         byte[] bytes = str.getBytes();
-        Node huffmanTreeRoot = createHuffmanTree(getNodes(bytes));
-        huffmanTreeRoot.preOrder();
+        System.out.println("原字符串对应的byte数组：" + Arrays.toString(bytes));
+        byte[] zip = huffmanZip(bytes);
+        System.out.println("压缩后的byte数组" + Arrays.toString(zip));
 
+        //// 1、根据赫夫曼编码压缩数据的原理，需要先创建str的赫夫曼树。
+        //byte[] bytes = str.getBytes();
+        //Node huffmanTreeRoot = createHuffmanTree(getNodes(bytes));
+        //System.out.println("生成的huffman树前序遍历为：");
+        //huffmanTreeRoot.preOrder();
+        //
+        //// 2、构建赫夫曼编码表。
+        //Map<Byte, String> huffmanCode = getCodes(huffmanTreeRoot);
+        //System.out.println("生成的huffman编码表为：" + huffmanCode);
+        //
+        //// 3、利用生成的编码表对str的byte数组进行编码。
+        ////（先生成编码后的字符串，再将字符串没8位转化为一个byte，最终生成一个byte数组）。
+        //byte[] zipByte = zip(bytes, huffmanCode);
+        //System.out.println("压缩后的byte数组为：" + Arrays.toString(zipByte));
+    }
+
+    /**
+     * 使用一个方法，将前面的方法封装，便于调用。
+     *
+     * @param bytes 原字符串对应的byte数组。
+     * @return 压缩后的byte数组。
+     */
+    public static byte[] huffmanZip(byte[] bytes) {
+        // 1、根据赫夫曼编码压缩数据的原理，需要先创建str的赫夫曼树。
+        Node huffmanTree = createHuffmanTree(getNodes(bytes));
         // 2、构建赫夫曼编码表。
-        Map<Byte, String> huffmanCode = getCodes(huffmanTreeRoot);
-        System.out.println(huffmanCode);
+        Map<Byte, String> huffmanCode = getCodes(huffmanTree);
+        // 3、利用生成的编码表对str的byte数组进行编码。
+        byte[] zipByte = zip(bytes, huffmanCode);
+        return zipByte;
+    }
+
+    /**
+     * 解码。
+     *
+     * @param huffmanCodes 赫夫曼编码表。
+     * @param bytes        赫夫曼编码得到的字节数组。
+     * @return
+     */
+    public static byte[] decode(Map<Byte, String> huffmanCodes, byte[] bytes) {
+        // TODO 实现赫夫曼编码的解码。
+        return null;
+    }
+
+    /**
+     * 将一个byte转化为二进制的字符串。
+     *
+     * @param flag 表示是否需要补高位，true，表示需要补高位；false，不补。
+     * @param b    传入的byte。
+     * @return 是该 b 对应的二进制字符串。
+     */
+    public static String byteToBitString(boolean flag, byte b) {
+        int temp = b;
+        if (flag) {
+            temp |= 256;
+        }
+        String str = Integer.toBinaryString(temp); // 返回的是temp对应的二进制补码。
+        if (flag) {
+            return str.substring(str.length() - 8);
+        } else {
+            return str;
+        }
+    }
+
+    /**
+     * 利用生成的编码表对str的byte数组进行编码。
+     *
+     * @param bytes       原字符串对应的byte数组。
+     * @param huffmanCode huffman编码表。
+     * @return 经过huffman编码处理过的byte数组，即压缩后的byte数组。
+     */
+    private static byte[] zip(byte[] bytes, Map<Byte, String> huffmanCode) {
+        // 先生成编码后的字符串。
+        StringBuilder codeBuilder = new StringBuilder();
+        for (byte b : bytes) {
+            codeBuilder.append(huffmanCode.get(b));
+        }
+        //System.out.println("使用huffman编码表编码后的结果：" + codeBuilder.toString());
+
+        // 接着对编码后的字符串每8位转化为一个byte，生成一个byte数组。
+        int len;
+        if (codeBuilder.length() % 8 == 0) { // ?? 这里不知道为什么这么做。
+            len = codeBuilder.length() / 8;
+        } else {
+            len = codeBuilder.length() / 8 + 1;
+        }
+        byte[] zipBytes = new byte[len];
+        int index = 0;
+        for (int i = 0; i < codeBuilder.length(); i += 8) {
+            String subStr;
+            if ((i + 8) > codeBuilder.length()) { // 多一种判断，防止数组越界。
+                subStr = codeBuilder.substring(i);
+            } else {
+                subStr = codeBuilder.substring(i, i + 8);
+            }
+            byte b = (byte) Integer.parseInt(subStr, 2); // 这里必须强转为byte，否则是无符号的数。
+            zipBytes[index] = b;
+            index++;
+        }
+        return zipBytes;
     }
 
     // 创建huffman树。
