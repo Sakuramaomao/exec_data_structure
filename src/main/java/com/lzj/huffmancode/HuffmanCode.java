@@ -53,7 +53,7 @@ public class HuffmanCode {
      *
      * @param huffmanCodes 赫夫曼编码表。
      * @param bytes        赫夫曼编码得到的字节数组。
-     * @return
+     * @return 解码后的byte数组。
      */
     public static byte[] decode(Map<Byte, String> huffmanCodes, byte[] bytes) {
         // TODO 实现赫夫曼编码的解码。
