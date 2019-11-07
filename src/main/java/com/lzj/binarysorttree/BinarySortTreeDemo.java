@@ -21,6 +21,28 @@ public class BinarySortTreeDemo {
 class BinarySortTree {
     private Node root;
 
+    /**
+     * 查找要删除的节点。
+     *
+     * @param value 希望查找的值。
+     * @return 如果找到，返回Node；否则，返回null。
+     */
+    public Node search(int value) {
+        // TODO
+        return null;
+    }
+
+    /**
+     * 查找要删除节点的父节点。
+     *
+     * @param value 希望查找的值。
+     * @return 如果找到，返回父节点node；否则，返回null。
+     */
+    public Node searchParent(int value) {
+        // TODO
+        return null;
+    }
+
     // 添加节点到二叉排序树中。
     public void add(Node node) {
         if (root == null) {
