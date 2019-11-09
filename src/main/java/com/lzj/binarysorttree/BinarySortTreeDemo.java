@@ -18,7 +18,9 @@ public class BinarySortTreeDemo {
         binarySortTree.midOrder();
 
         // 测试一把叶子节点的删除
-        binarySortTree.delete(2);
+        //binarySortTree.delete(2);
+        //binarySortTree.delete(7);
+        binarySortTree.delete(10);
         System.out.println("删除后的树");
         binarySortTree.midOrder();
     }
@@ -44,7 +46,7 @@ class BinarySortTree {
             }
             // 找到targetNode的父节点
             Node targetParent = searchParent(val);
-            // 如果要删除节点时叶子节点
+            // 如果要的删除节点是叶子节点
             if (targetNode.left == null && targetNode.right == null) {
                 // 判断要删除的是父节点的左子节点还是右子节点。
                 if (targetParent.left != null && targetParent.left.value == val) {
@@ -53,8 +55,32 @@ class BinarySortTree {
                 if (targetParent.right != null && targetParent.right.value == val) {
                     targetParent.right = null; // 删除右边。
                 }
+                // 如果要删除的节点是有两个子树的节点。
+            } else if (targetNode.left != null && targetNode.right != null) {
+                int minVal = delRigthMin(targetNode.right);
+                targetNode.value = minVal;
+            } else { // 如果要删除的节点是只有一个子树的节点。
+                // 不想写了。。
             }
         }
+    }
+
+    /**
+     * 1、返回的以node为根节点的二叉排序树的最小节点的值。
+     * 2、删除此叶子节点。
+     *
+     * @param node 传入的节点（当做二叉排序树的根节点）。
+     * @return 返回的以node为根节点的二叉排序树的最小节点的值。
+     */
+    public int delRigthMin(Node node) {
+        Node temp = node; // 不对node直接改动，将其用临时变量存起来。
+        while (temp.left != null) {
+            temp = temp.left; // 因为是二叉排序树，一直找到左边的叶子节点，也就找到了最小节点。
+        }
+        // 这个temp就指向了最小节点。
+        // 删除最小节点。
+        delete(temp.value);
+        return temp.value; // 返回此节点的值。
     }
 
     // 查找要删除的节点
