@@ -272,12 +272,25 @@ class Node {
 
         // 如果右子树高度 - 左子树高度 > 1，进行左旋。降低右子树的高度。
         if (this.rightHeight() - this.leftHeight() > 1) {
-            leftRotate();
+            // 如果左子树高度大于右子树的高度时，整个树直接做左旋，会导致左旋后的树还是非平衡的。
+            if (right != null && right.leftHeight() > right.rightHeight()) {
+                // 所以，要先对整个右子树左右旋先平衡下。
+                right.rightRotate();
+            } else {
+                leftRotate();
+            }
+            return; // 因为没用if else，所以这里必须要return。否则，会将平衡好的树因为运行下面的代码而打乱掉。
         }
 
         // 如果左子树的高度 - 右子树高度 > 1，进行右旋。降低左子树的高度。
         if (this.leftHeight() - this.rightHeight() > 1) {
-            rightRotate();
+            // 如果左子树高度小于右子树的高度时，整个树直接做右旋，会导致右旋后的树还是非平衡的。
+            if (left != null && left.leftHeight() < left.rightHeight()) {
+                // 所以，要先对左子树做左旋，使其平衡。
+                left.leftRotate();
+            } else {
+                rightRotate();
+            }
         }
     }
 
