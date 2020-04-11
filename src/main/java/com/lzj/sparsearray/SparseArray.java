@@ -28,7 +28,7 @@ public class SparseArray {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 if (array[i][j] != 0) {
-                        count++;
+                    count++;
                     sparseArray[count][0] = i;
                     sparseArray[count][1] = j;
                     sparseArray[count][2] = array[i][j];
@@ -41,7 +41,7 @@ public class SparseArray {
         int[][] array2 = new int[sparseArray[0][0]][sparseArray[0][1]];
         int sparseRow = sparseArray.length;
         for (int i = 1; i < sparseRow; i++) {
-           array2[sparseArray[i][0]][sparseArray[i][1]] = sparseArray[i][2];
+            array2[sparseArray[i][0]][sparseArray[i][1]] = sparseArray[i][2];
         }
         printArray(array2, "转化为原数组");
     }
@@ -61,7 +61,7 @@ public class SparseArray {
     static void printArray(int[][] array, String message) {
         System.out.println("=====" + message + "======");
         for (int[] row : array) {
-            for(int data : row) {
+            for (int data : row) {
                 System.out.printf("%d\t", data);
             }
             System.out.println();
