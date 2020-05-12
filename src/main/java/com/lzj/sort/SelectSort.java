@@ -1,5 +1,7 @@
 package com.lzj.sort;
 
+import java.util.Arrays;
+
 /**
  * 选择排序。
  * <p>
@@ -12,25 +14,25 @@ package com.lzj.sort;
  */
 public class SelectSort {
     public static void main(String[] args) {
-        //int[] arr = {119, -2, -1, 110};
+        int[] arr = {119, -2, -1, 110};
         //System.out.println("排序前：" + Arrays.toString(arr));
         // 下面是80000随机数的性能测试。
-        int[] arr = new int[80000];
-        for (int i = 0; i < 80000; i++) {
-            arr[i] = (int) (Math.random() * 8000000);
-        }
+        //int[] arr = new int[80000];
+        //for (int i = 0; i < 80000; i++) {
+        //    arr[i] = (int) (Math.random() * 8000000);
+        //}
         long startTime = System.currentTimeMillis();
         selectSort(arr);
         long time = System.currentTimeMillis() - startTime;
         System.out.println("8w随机数，选择排序耗时：" + time / 1000.0 + " 秒");
-        //System.out.println("排序后：" + Arrays.toString(arr));
+        System.out.println("排序后：" + Arrays.toString(arr));
     }
 
     private static void selectSort(int[] arr) {
-        for (int i = 0; i < arr.length - 2; i++) { // 最后一个元素不需要排序，所以多减了一个1。
+        for (int i = 0; i < arr.length - 1; i++) { // 最后一个元素不需要排序，所以多减了一个1。
             int min = arr[i]; // 存放最小值, 假定第i个元素是最小的。
             int minIndex = i; // 存放最小值的索引，用于交换。
-            for (int j = i + 1; j < arr.length - 1; j++) {
+            for (int j = i + 1; j < arr.length; j++) {
                 if (min > arr[j]) { // 如果比min还要小，则值和索引都要进行更新。
                     min = arr[j];
                     minIndex = j;

@@ -47,27 +47,27 @@ public class MiGong {
      * 1：墙壁。
      * 2：表示小球可以走。
      * 3；表示改点可以走，但是走不通。
-     *
+     * <p>
      * 思路：
      * 1、如果到终点
-     *      return true（结束递归）
+     * return true（结束递归）
      * 2、如果未到终点
-     *      （1）如果可走（设置为0）
-     *          走入这个点（设置为2）
-     *          开始判断这个点的四周是否可走
-     *          1、下面可走
-     *              return true
-     *          2、右面可走
-     *              return true
-     *          3、上面可走
-     *              return true
-     *          4、左面可走
-     *              return true
-     *          5、以上都不能走
-     *              这是一个死点（设置为3）
-     *              return false
-     *      （2）如果不可走（不为0）
-     *          return false
+     * （1）如果可走（设置为0）
+     * 走入这个点（设置为2）
+     * 开始判断这个点的四周是否可走
+     * 1、下面可走
+     * return true
+     * 2、右面可走
+     * return true
+     * 3、上面可走
+     * return true
+     * 4、左面可走
+     * return true
+     * 5、以上都不能走
+     * 这是一个死点（设置为3）
+     * return false
+     * （2）如果不可走（不为0）
+     * return false
      *
      * @param map 地图
      * @param i   小球起始位置横坐标。

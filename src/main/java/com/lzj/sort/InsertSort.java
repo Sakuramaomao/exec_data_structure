@@ -13,11 +13,11 @@ package com.lzj.sort;
  */
 public class InsertSort {
     public static void main(String[] args) {
-        //int[] arr = {5, 4, 3, 2, 1};
-        int[] arr = new int[80000];
-        for (int i = 0; i < 80000; i++) {
-            arr[i] = (int) (Math.random() * 8000000);
-        }
+        int[] arr = {5, 4, 3, 2, 1};
+        //int[] arr = new int[80000];
+        //for (int i = 0; i < 80000; i++) {
+        //    arr[i] = (int) (Math.random() * 8000000);
+        //}
         long startTime = System.currentTimeMillis();
         insertSort(arr);
         long time = System.currentTimeMillis() - startTime;

@@ -1,5 +1,7 @@
 package com.lzj.sort;
 
+import java.math.BigDecimal;
+
 /**
  * 冒泡排序。
  * <p>
@@ -15,18 +17,23 @@ package com.lzj.sort;
  */
 public class BubbleSort {
     public static void main(String[] args) {
-        //int[] arr = {3, 10, -1, 9, 20};
+        int[] arr = {3, 10, -1, 9, 20};
         // 下面是80000随机数的性能测试。
-        int[] arr = new int[80000];
-        for (int i = 0; i < 80000; i++) {
-            arr[i] = (int) (Math.random() * 8000000);
-        }
+        //int[] arr = new int[80000];
+        //for (int i = 0; i < 80000; i++) {
+        //    arr[i] = (int) (Math.random() * 8000000);
+        //}
         long startTime = System.currentTimeMillis();
         //System.out.println("排序前顺序：" + Arrays.toString(arr));
         bubbleSort(arr);
         //System.out.println("排序后顺序：" + Arrays.toString(arr));
         long time = System.currentTimeMillis() - startTime;
         System.out.println("8w随机数，冒泡排序耗时：" + time / 1000.0 + " 秒");
+
+        BigDecimal b1 = new BigDecimal("1");
+        BigDecimal b2 = new BigDecimal("3");
+        double d = b1.divide(b2, 2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        System.out.println(d);
     }
 
     private static void bubbleSort(int[] arr) {
