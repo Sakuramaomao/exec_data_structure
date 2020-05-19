@@ -15,11 +15,11 @@ package com.lzj.tree;
  */
 public class HeapSort {
     public static void main(String[] args) {
-        //int[] arr = {4, 6, 8, 5, 9};
-        int[] arr = new int[800000];
-        for (int i = 0; i < 800000; i++) {
-            arr[i] = (int) (Math.random() * 8000000);
-        }
+        int[] arr = {4, 6, 8, 5, 9};
+        //int[] arr = new int[800000];
+        //for (int i = 0; i < 800000; i++) {
+        //    arr[i] = (int) (Math.random() * 8000000);
+        //}
         long start = System.currentTimeMillis();
         heapSort(arr);
         long end = System.currentTimeMillis();

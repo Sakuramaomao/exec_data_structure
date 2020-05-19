@@ -15,10 +15,11 @@ package com.lzj.sort;
 public class QuickSort {
     public static void main(String[] args) {
         //int[] arr = {-9, 78, 24, 23, -567, 70};
-        int[] arr = new int[80000000];
-        for (int i = 0; i < 80000000; i++) {
-            arr[i] = (int) (Math.random() * 8000000);
-        }
+        int[] arr = {2, 10, 8, 22, 34, 5, 12};
+        //int[] arr = new int[80000000];
+        //for (int i = 0; i < 80000000; i++) {
+        //    arr[i] = (int) (Math.random() * 8000000);
+        //}
         long start = System.currentTimeMillis();
         quickSort(arr, 0, arr.length - 1);
         long end = System.currentTimeMillis();
